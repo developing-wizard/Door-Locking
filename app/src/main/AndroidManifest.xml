@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-permission android:name="android.permission.CAMERA_MICROPHONE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/door"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/door"
+        android:supportsRtl="true"
+        android:theme="@style/Base.Theme.DoorLock"
+        tools:targetApi="31">
+        <activity
+            android:name=".intruderDetect.IntruderDetection"
+            android:exported="true"/>
+        <receiver
+            android:name=".receiver.UnlockReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".services.MyForegroundService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <activity
+            android:name=".soundSelection.SoundSelectionActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".passwordSelection.PatternPasswordActivity"
+            android:exported="true"
+            android:screenOrientation="nosensor"></activity>
+        <activity
+            android:name=".passwordSelection.PinPasswordActivity"
+            android:exported="true"
+            android:screenOrientation="nosensor"></activity>
+        <activity
+            android:name=".wallpaperSelection.WallpaperThemesActivity"
+            android:exported="true"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".doorThemeSelection.DoorThemesActivity"
+            android:exported="true"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".lockTypeSelection.LockTypeActivity"
+            android:exported="true"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".SecurityQuestionActivity"
+            android:exported="true"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".homeScreen.MainActivity"
+            android:exported="true"
+            android:screenOrientation="nosensor"
+            android:theme="@style/Base.Theme.DoorLock">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
