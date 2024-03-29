@@ -64,8 +64,6 @@ class IntruderRvAdapter(private val imagelist: MutableList<File>, private val co
         holder.itemView.setOnClickListener {
             onItemClickListener?.onItemClick(position, image)
             val dialog = Dialog(context)
-
-
             dialog.setContentView(R.layout.preview_dialog)
             val window = dialog.window
             val layoutParams = window?.attributes
