@@ -62,6 +62,7 @@ class MyForegroundService : Service() {
             .setContentIntent(pendingIntent)
             .setSmallIcon(R.drawable.baseline_notifications_active)
         return builder.build()
+
     }
 
 }
